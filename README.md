@@ -2,6 +2,7 @@
 Before we can use Verto, we'll need to install it. There are two options available:
 
 Install FreeSWITCH + Verto
+
 Install Verto only
 If you're going to use a self hosted FreeSWITCH server you can use the FreeSWITCH Installation Guide and mod_verto Guide.
 
