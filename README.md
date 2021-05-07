@@ -23,3 +23,6 @@ Verto depends on jQuery and jQuery JSON, so let's install them too:
 
 npm install jquery
 npm install jquery-json
+
+# Reference
+https://evoluxbr.github.io/verto-docs/tut/installing-verto.html
