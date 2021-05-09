@@ -1,2 +1,2 @@
 # Exclude private files so they are not pushed to a public repo
-/PRDPKICA.crt
+*.crt
