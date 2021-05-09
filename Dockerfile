@@ -20,9 +20,6 @@ COPY install/ /
 WORKDIR /lib
 RUN npm install verto
 
-# RUN ls -la /lib/node_modules
-# RUN ls -la /src
-
 RUN npm install jquery \
     && npm install jquery-json
 
@@ -31,7 +28,9 @@ FROM nginx:alpine
 # Insert wasm type into Nginx mime.types file so they load correctly.
 RUN sed -i '3i\ \ \ \ application/wasm wasm\;' /etc/nginx/mime.types
 
-COPY --from=builder /src/index.html /usr/share/nginx/html
+COPY --from=builder /src/* /usr/share/nginx/html/
+COPY --from=builder /lib /usr/share/nginx/html
+
 ARG IMAGE_BUILD_TIMESTAMP
 ENV IMAGE_BUILD_TIMESTAMP=${IMAGE_BUILD_TIMESTAMP}
 RUN echo IMAGE_BUILD_TIMESTAMP=${IMAGE_BUILD_TIMESTAMP}
