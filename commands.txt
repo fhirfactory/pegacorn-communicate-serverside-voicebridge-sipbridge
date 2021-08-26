@@ -1,8 +1,19 @@
 # Docker build
-docker build --rm --build-arg IMAGE_BUILD_TIMESTAMP="%date% %time%" -t pegacorn-communicate-voicebridge-sipbridge:1.0.0-snapshot .
+docker pull node:14.16.1-alpine3.13
+docker pull nginx:alpine
+docker build --rm --no-cache --network host --build-arg IMAGE_BUILD_TIMESTAMP="%date% %time%" --build-arg HTTP_PROXY=http://ACTGOV%5C[Your first name]%20[Your Surname]:[Your Password (URL encoded)]@proxy.test.act.gov.au:9090 -t pegacorn-communicate-voicebridge-sipbridge:1.0.0-snapshot .
+
+# Run as separate command
+# Copy the verto folder to aether-host-files/common folder path 
+docker container run --rm -it -v /:/host alpine
+chroot /host
+cp -rf /run/desktop/mnt/host/e/dev/aether-host-files/common/* /data/
+
 
 # Helm command
 \helm\helm upgrade pegacorn-communicate-voicebridge-sipbridge-site-a --install --namespace site-a --set serviceName=pegacorn-communicate-voicebridge-sipbridge,hostPath=/data/verto,hostPathCerts=/data/certificates,imageTag=1.0.0-snapshot,basePort=30870,numOfPods=1 helm
 
 # DNS entry
 Add pegacorn-communicate-voicebridge-sipbridge.site-a to host file
+
+URL: https://pegacorn-communicate-voicebridge-sipbridge.site-a:30870/

@@ -92,8 +92,8 @@ spec:
             path: /
             port: 443
             scheme: HTTPS
-          initialDelaySeconds: 30
-        name: element
+          initialDelaySeconds: 15
+        name: voipbridge
         ports:
         - containerPort: 443
           name: https
